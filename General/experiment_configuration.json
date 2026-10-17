@@ -1,0 +1,36 @@
+{
+    "Experiment_1": {
+        "Description": "OLS as Attention",
+        "Training_Sizes": [
+            500,
+            1000,
+            2500,
+            5000
+        ],
+        "SNR_Values": [
+            0.5,
+            1.0,
+            2.0,
+            3.0
+        ],
+        "Replications": 10,
+        "Test_Size": 1000
+    },
+    "Experiment_2": {
+        "Description": "Beyond OLS: PCR and Ridge",
+        "PCR_Components": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "Ridge_Lambdas": [
+            0.01,
+            0.1,
+            1.0,
+            10.0,
+            100.0
+        ]
+    }
+}

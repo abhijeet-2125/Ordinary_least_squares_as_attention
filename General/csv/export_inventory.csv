@@ -1,0 +1,4 @@
+Results_Table,Rows,Columns,Columns_List
+experiment1_results,960,8,"DGP, N_train, SNR, Replication, OLS_R2, Attention_R2, Max_Prediction_Difference, Predictions_Match"
+pcr_results,4800,9,"DGP, N_train, SNR, Replication, L, PCR_R2, Attention_R2, Max_Prediction_Difference, Predictions_Match"
+ridge_results,4800,9,"DGP, N_train, SNR, Replication, Lambda, Ridge_R2, Attention_R2, Max_Prediction_Difference, Predictions_Match"

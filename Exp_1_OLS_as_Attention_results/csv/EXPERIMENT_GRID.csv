@@ -1,0 +1,97 @@
+DGP,N_train,SNR
+Linear,500,0.5
+Linear,500,1.0
+Linear,500,2.0
+Linear,500,3.0
+Linear,1000,0.5
+Linear,1000,1.0
+Linear,1000,2.0
+Linear,1000,3.0
+Linear,2500,0.5
+Linear,2500,1.0
+Linear,2500,2.0
+Linear,2500,3.0
+Linear,5000,0.5
+Linear,5000,1.0
+Linear,5000,2.0
+Linear,5000,3.0
+Friedman 1,500,0.5
+Friedman 1,500,1.0
+Friedman 1,500,2.0
+Friedman 1,500,3.0
+Friedman 1,1000,0.5
+Friedman 1,1000,1.0
+Friedman 1,1000,2.0
+Friedman 1,1000,3.0
+Friedman 1,2500,0.5
+Friedman 1,2500,1.0
+Friedman 1,2500,2.0
+Friedman 1,2500,3.0
+Friedman 1,5000,0.5
+Friedman 1,5000,1.0
+Friedman 1,5000,2.0
+Friedman 1,5000,3.0
+Friedman 2,500,0.5
+Friedman 2,500,1.0
+Friedman 2,500,2.0
+Friedman 2,500,3.0
+Friedman 2,1000,0.5
+Friedman 2,1000,1.0
+Friedman 2,1000,2.0
+Friedman 2,1000,3.0
+Friedman 2,2500,0.5
+Friedman 2,2500,1.0
+Friedman 2,2500,2.0
+Friedman 2,2500,3.0
+Friedman 2,5000,0.5
+Friedman 2,5000,1.0
+Friedman 2,5000,2.0
+Friedman 2,5000,3.0
+Friedman 3,500,0.5
+Friedman 3,500,1.0
+Friedman 3,500,2.0
+Friedman 3,500,3.0
+Friedman 3,1000,0.5
+Friedman 3,1000,1.0
+Friedman 3,1000,2.0
+Friedman 3,1000,3.0
+Friedman 3,2500,0.5
+Friedman 3,2500,1.0
+Friedman 3,2500,2.0
+Friedman 3,2500,3.0
+Friedman 3,5000,0.5
+Friedman 3,5000,1.0
+Friedman 3,5000,2.0
+Friedman 3,5000,3.0
+Rotated Sine,500,0.5
+Rotated Sine,500,1.0
+Rotated Sine,500,2.0
+Rotated Sine,500,3.0
+Rotated Sine,1000,0.5
+Rotated Sine,1000,1.0
+Rotated Sine,1000,2.0
+Rotated Sine,1000,3.0
+Rotated Sine,2500,0.5
+Rotated Sine,2500,1.0
+Rotated Sine,2500,2.0
+Rotated Sine,2500,3.0
+Rotated Sine,5000,0.5
+Rotated Sine,5000,1.0
+Rotated Sine,5000,2.0
+Rotated Sine,5000,3.0
+Soft Radial,500,0.5
+Soft Radial,500,1.0
+Soft Radial,500,2.0
+Soft Radial,500,3.0
+Soft Radial,1000,0.5
+Soft Radial,1000,1.0
+Soft Radial,1000,2.0
+Soft Radial,1000,3.0
+Soft Radial,2500,0.5
+Soft Radial,2500,1.0
+Soft Radial,2500,2.0
+Soft Radial,2500,3.0
+Soft Radial,5000,0.5
+Soft Radial,5000,1.0
+Soft Radial,5000,2.0
+Soft Radial,5000,3.0

@@ -1,0 +1,45 @@
+Coverage: 96/96 conditions, 1-1 replications each (paper: 10). Stage 1, attention time cap = 15.
+
+Overall average R2 (ours vs paper):
+  OLS      0.288 vs 0.279   (diff +0.008)
+  RF       0.455 vs 0.454   (diff +0.001)
+  MLP      0.530 vs 0.521   (diff +0.009)
+  GBM      0.418 vs 0.418   (diff +0.000)
+  Att Reg  0.479 vs 0.476   (diff +0.003)
+Ranking by overall R2  ours : MLP > Att Reg > RF > GBM > OLS
+                       paper: MLP > Att Reg > RF > GBM > OLS
+Same overall ranking as the paper: True
+
+Best model per DGP (average over its 16 conditions), ours vs paper:
+  Linear        ours OLS      (0.56)   paper OLS      (0.56)   agree
+  Friedman 1    ours MLP      (0.52)   paper Att Reg  (0.53)   DIFFER
+  Friedman 2    ours MLP      (0.52)   paper MLP      (0.51)   agree
+  Friedman 3    ours Att Reg  (0.55)   paper MLP      (0.54)   DIFFER
+  Rotated Sine  ours MLP      (0.52)   paper MLP      (0.51)   agree
+  Soft Radial   ours MLP      (0.53)   paper MLP      (0.52)   agree
+
+Condition-level agreement with Table 2 (96 conditions):
+  OLS      MAE 0.015 | within 0.03: 81% | within 2 SE + 0.01: 53%
+  RF       MAE 0.018 | within 0.03: 83% | within 2 SE + 0.01: 34%
+  MLP      MAE 0.021 | within 0.03: 74% | within 2 SE + 0.01: 34%
+  GBM      MAE 0.019 | within 0.03: 78% | within 2 SE + 0.01: 33%
+  Att Reg  MAE 0.046 | within 0.03: 49% | within 2 SE + 0.01: 25%
+
+Attention Regression vs the tree methods (share of conditions where Att Reg is ahead):
+  vs RF  : ours 74%   paper 59%
+  vs GBM : ours 90%   paper 82%
+  vs MLP : ours 34%   paper 20%
+  vs OLS : ours 81%   paper 80%
+
+Att Reg on the Linear DGP by N (the paper's Att Reg gets WORSE as N grows):
+  N=500: ours 0.53 / paper 0.52  N=1000: ours 0.55 / paper 0.48  N=2500: ours 0.52 / paper 0.47  N=5000: ours 0.35 / paper 0.43
+
+Largest Att Reg differences from the paper:
+  Rotated Sine N=1000  SNR=3.0 ours 0.17 paper 0.56 (-0.39)
+  Linear       N=5000  SNR=3.0 ours 0.42 paper 0.57 (-0.15)
+  Linear       N=5000  SNR=2.0 ours 0.37 paper 0.52 (-0.15)
+  Friedman 1   N=5000  SNR=3.0 ours 0.58 paper 0.72 (-0.14)
+  Linear       N=2500  SNR=1.0 ours 0.29 paper 0.43 (-0.14)
+  Rotated Sine N=2500  SNR=3.0 ours 0.44 paper 0.57 (-0.13)
+
+Attention fits: {'time_cap': 86, 'early_stop': 10}; refits 9/96; median 50 L-BFGS steps, mean 15.3s per fit.
