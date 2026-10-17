@@ -1,65 +1,138 @@
-# DA3410 Assignment 11: Ordinary Least Squares as an Attention Mechanism
+# Ordinary Least Squares as an Attention Mechanism
+
+**Statistical Learning · Attention Mechanisms · Regression**
+
+An empirical reproduction and evaluation of *Ordinary Least Squares as an Attention Mechanism*, investigating the mathematical equivalence between ordinary least squares (OLS) and attention-based prediction and extending the analysis to regularized regression and nonlinear attention regression.
 
 ## Overview
 
-This repository contains my implementation and experimental evaluation of the paper *Ordinary Least Squares as an Attention Mechanism* by Philippe Goulet Coulombe.
+This project investigates how classical statistical estimators can be expressed through attention mechanisms. Rather than treating attention exclusively as a neural-network component, the study examines its relationship with least-squares estimation and explores how spectral transformations, dimensionality reduction, and regularization affect predictive performance.
 
-The objective of this project is to investigate how ordinary least squares (OLS) and related regression estimators can be represented as attention operations, and to evaluate Attention Regression against conventional machine-learning models on simulated datasets.
+The implementation reproduces three experimental components:
 
-## Experiments
+- **Experiment 1 — OLS as Attention:** Implements the spectral attention formulation and verifies its numerical equivalence to conventional OLS predictions.
+- **Experiment 2 — Beyond OLS:** Extends the equivalence analysis to Principal Component Regression (PCR) and Ridge Regression.
+- **Experiment 3 — Attention Regression:** Evaluates attention regression against conventional machine-learning baselines across six data-generating processes, varying sample sizes, and signal-to-noise ratios.
 
-### Experiment 1: OLS as an Attention Mechanism
+## Questions
 
-- Implemented conventional OLS and its attention-based representation.
-- Compared predictions to verify numerical equivalence.
-- Evaluated attention-weight properties and numerical differences across simulation configurations.
+1. Can ordinary least squares be represented as an attention mechanism without changing its predictions?
+2. Can the attention formulation reproduce PCR and Ridge Regression under their corresponding spectral and regularization constraints?
+3. How does attention regression compare with conventional regression and nonlinear machine-learning models across different data-generating processes?
 
-**Key result:** The maximum absolute prediction difference across the full benchmark was approximately \(2.274 \times 10^{-13}\).
+## Methodology
 
-### Experiment 2: Beyond OLS
+### 1. OLS as an Attention Mechanism
 
-- Extended the attention representation to Principal Component Regression (PCR) and ridge regression.
-- Compared conventional estimator predictions with their spectral-attention counterparts.
-- Evaluated different numbers of principal components and ridge regularisation parameters.
+The first experiment implements the spectral representation of OLS as an attention-based predictor. Conventional least-squares predictions are compared numerically with predictions obtained from the attention formulation.
 
-**Key result:** The maximum prediction differences were approximately \(5.33 \times 10^{-14}\) for PCR and \(6.79 \times 10^{-13}\) for ridge regression.
+**Key finding:** Across 960 evaluations, the two implementations produced numerically equivalent predictions, with a maximum absolute prediction difference of approximately \(2.27 \times 10^{-13}\).
 
-### Experiment 3: Attention Regression and Baseline Comparison
+### 2. Extensions Beyond OLS
 
-- Evaluated Attention Regression against OLS, Random Forest, Multilayer Perceptron (MLP), and Gradient Boosting.
-- Tested six simulated data-generating processes across four training sizes and four signal-to-noise ratios.
-- Compared average test \(R^2\) values and individual data-generating-process results with the paper.
+The second experiment examines two extensions:
 
-**Key result:** The overall model ranking matched the paper. Attention Regression achieved an average test \(R^2\) of 0.479 in my run, compared with 0.476 in the paper.
+- **Principal Component Regression (PCR):** Varies the number of retained principal components to study the effect of dimensionality reduction.
+- **Ridge Regression:** Varies the regularization parameter to examine the effect of coefficient shrinkage.
 
-**Reproduction limitation:** Experiment 3 used one replication per condition under a limited-compute configuration, whereas the paper reports averages over ten replications. The results should therefore be interpreted as a resource-constrained reproduction, not an exact numerical replication.
+The conventional estimators are compared against their corresponding spectral attention formulations.
+
+**Key findings:**
+- PCR: 4,800 evaluations, with a maximum absolute prediction difference of approximately \(5.33 \times 10^{-14}\).
+- Ridge Regression: 4,800 evaluations, with a maximum absolute prediction difference of approximately \(6.79 \times 10^{-13}\).
+
+These results support the numerical equivalence of the implemented estimator pairs.
+
+### 3. Attention Regression and Nonlinear Baselines
+
+The third experiment compares Attention Regression with four conventional baselines:
+
+- Ordinary Least Squares (OLS)
+- Random Forest (RF)
+- Multilayer Perceptron (MLP)
+- Gradient Boosting Machine (GBM)
+
+The benchmark spans six data-generating processes: Linear, Friedman 1, Friedman 2, Friedman 3, Rotated Sine, and Soft Radial. Each process is evaluated across four training-set sizes and four signal-to-noise ratios.
+
+**Computational note:** Due to resource constraints, this reproduction evaluates one replication per configuration, compared with ten replications in the paper. Attention Regression also uses a time cap and early stopping. The results therefore represent a limited-compute empirical reproduction rather than an exact replication of the paper's full benchmark.
+
+## Results
+
+### Overall predictive performance
+
+The table reports mean test \(R^2\) across the 96 Experiment 3 configurations. The paper's reported means are included for comparison.
+
+| Model | Reproduction | Paper |
+|---|---:|---:|
+| OLS | 0.288 | 0.279 |
+| Random Forest | 0.455 | 0.454 |
+| MLP | 0.530 | 0.521 |
+| GBM | 0.418 | 0.418 |
+| Attention Regression | 0.479 | 0.476 |
+
+The overall ranking matches the paper:
+
+**MLP > Attention Regression > Random Forest > GBM > OLS**
+
+The aggregate results are close to the reported values, although individual configurations differ. Attention Regression also shows larger condition-level deviations than the other models, which should be interpreted in light of the reduced replication count and computational limits.
+
+### Interpretation
+
+The experiments illustrate two complementary findings:
+
+1. **Mathematical equivalence:** Classical estimators can be represented through attention-based formulations while preserving their predictions, provided the corresponding transformations and constraints are implemented correctly.
+2. **Empirical performance:** Predictive performance depends on the data-generating process, sample size, noise level and model configuration. Attention Regression is competitive overall, but it does not outperform every baseline in every setting.
 
 ## Repository Structure
 
-- `notebooks/` — Jupyter notebooks for the experiments.
-- `Exp_1_OLS_as_Attention_results/` — Experiment 1 outputs.
-- `Exp_2_Beyond_OLS_results/` — Experiment 2 outputs.
-- `Exp3_attention_retention_results/` — Experiment 3 results and paper comparisons.
-- `figures/` — Generated experimental plots.
-- `General/` — Supporting materials.
-- `A11.pdf` — Assignment document.
-- `report.pdf` — Final experimental report.
+```text
+ordinary-least-squares-as-attention/
+├── notebooks/
+│   ├── exp1_2.ipynb
+│   └── exp3.ipynb
+├── exp1_ols_as_attention_results/
+│   ├── csv/
+│   └── tables/
+├── exp2_beyond_ols_results/
+│   ├── csv/
+│   └── tables/
+├── exp3_attention_regression_results/
+│   ├── condition_means_vs_paper.csv
+│   ├── findings.txt
+│   ├── results_long.csv
+│   ├── table2_ours_vs_paper.csv
+│   └── table_overall_and_per_dgp.csv
+├── General/
+│   ├── csv/
+│   └── experiment_configuration.json
+├── figures/
+├── A11.pdf
+├── report.pdf
+├── README.md
+└── .gitignore
+```
 
-## Evaluation Metric
+*The folder names above assume the proposed renaming has been completed. The notebooks and result files contain the detailed implementations and exported experimental outputs.*
 
-Predictive performance is measured using the out-of-sample coefficient of determination, \(R^2\). Higher test \(R^2\) indicates better predictive performance relative to predicting the test-set mean.
+## Reproducibility
 
-## Tools and Technologies
+The repository includes Jupyter notebooks, exported CSV results, summary tables, visualizations and the report.
 
-- Python
-- NumPy and Pandas
-- scikit-learn
-- PyTorch
-- Matplotlib
-- Jupyter Notebooks / Kaggle
+To explore the experiments:
+
+1. Clone the repository.
+2. Install the required Python libraries in an isolated environment.
+3. Open the notebooks in Jupyter or a compatible notebook environment.
+4. Run the experiments and compare the resulting predictions and metrics with the exported results.
+
+Exact package versions, runtime requirements, and execution settings should be recorded alongside the notebooks when preparing a fully reproducible environment.
 
 ## Reference
 
-Philippe Goulet Coulombe, *Ordinary Least Squares as an Attention Mechanism*.
+Goulet Coulombe, Philippe. *Ordinary Least Squares as an Attention Mechanism.*
 
-Author's research code: https://github.com/philgoucou/ols-attention
+Reference implementation: [philgoucou/ols-attention](https://github.com/philgoucou/ols-attention)
+
+---
+
+**Research focus:** Connecting classical statistical estimation with attention mechanisms through mathematical derivation, numerical verification and empirical benchmarking.
